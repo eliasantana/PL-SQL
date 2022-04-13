@@ -1,0 +1,29 @@
+
+--<DS_SCRIPT>
+-- DESCRIÇÃO..: Criando tabela  de Controle de envio de menssagens
+-- RESPONSAVEL: Elias Santana
+-- DATA.......: 13/04/2022
+-- APLICAÇÃO..: fatura
+--</DS_SCRIPT>
+--<USUARIO=DBAPS>
+
+CREATE TABLE mensageria (
+  id        NUMBER,
+  destino   VARCHAR2(255),
+  dt_envio  DATE,
+  status    VARCHAR2(1)
+)
+/
+ALTER TABLE mensageria ADD CONSTRAINT cnt_id_pk PRIMARY KEY (id)
+/
+ALTER TABLE mensageria ADD CONSTRAINT cnt_status_ck CHECK (
+  status IN ('S','N')
+)
+/
+COMMENT ON COLUMN MENSAGERIA.ID        IS 'CHAVE PRIMÁRIA'
+/
+COMMENT ON COLUMN MENSAGERIA.DESTINO   IS 'E-MAIL DE DESTINO'
+/
+COMMENT ON COLUMN MENSAGERIA.DT_ENVIO  IS 'DATATA DE ENVIO'
+/
+COMMENT ON COLUMN MENSAGERIA.STATUS    IS 'STATUS S-ENVIADO N-NÃO ENVIADO'
